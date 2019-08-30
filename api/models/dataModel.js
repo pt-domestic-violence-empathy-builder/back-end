@@ -1,10 +1,17 @@
-const db = require('../../data/config/dbConfig.js')
+const db = require('../../data/config/dbConfig.js');
 
 module.exports = {
   insert,
   getAll,
   findBy
-}
+};
+// async function insert(data) {
+//   const [id] = await db('data')
+//     .insert(data)
+//     .returning('id');
+
+//   return findBy('id', id);
+// }
 
 function insert(data) {
   return db('data')
@@ -12,15 +19,14 @@ function insert(data) {
     .then(ids => {
       return db('data')
         .where({ id: ids[0] })
-        .first()
-    })
+        .first();
+    });
 }
 
 function getAll() {
-  return db('data')
+  return db('data');
 }
 
 function findBy(column, filter) {
-  return db('data')
-      .where({ [column]: filter})
+  return db('data').where({ [column]: filter });
 }
